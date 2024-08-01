@@ -9,7 +9,35 @@ import { wireTogetherAIListOutputSchema } from './togetherai.wiretypes';
 
 
 // [Azure] / [OpenAI]
+// https://platform.openai.com/docs/models
 const _knownOpenAIChatModels: ManualMappings = [
+
+  // GPT-4o mini
+  {
+    idPrefix: 'gpt-4o-mini-2024-07-18',
+    label: 'GPT-4o Mini (2024-07-18)',
+    description: 'Affordable model for fast, lightweight tasks. GPT-4o mini is cheaper and more capable than GPT-3.5 Turbo.',
+    contextWindow: 128000,
+    maxCompletionTokens: 16384,
+    trainingDataCutoff: 'Oct 2023',
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
+    pricing: { chatIn: 0.15, chatOut: 0.60 },
+    benchmark: { cbaMmlu: 82.0 },
+  },
+  {
+    idPrefix: 'gpt-4o-mini',
+    label: 'GPT-4o mini',
+    description: 'Currently points to gpt-4o-mini-2024-07-18.',
+    symLink: 'gpt-4o-mini-2024-07-18',
+    hidden: true,
+    // copied from symlinked
+    contextWindow: 128000,
+    maxCompletionTokens: 16384,
+    trainingDataCutoff: 'Oct 2023',
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
+    pricing: { chatIn: 0.15, chatOut: 0.60 },
+    benchmark: { cbaMmlu: 82.0 },
+  },
 
   // GPT-4o -> 2024-05-13
   {
@@ -24,10 +52,9 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Oct 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 5, chatOut: 15 },
-    benchmark: { cbaElo: 1310 },
+    benchmark: { cbaElo: 1287 },
   },
   {
-    isLatest: true,
     idPrefix: 'gpt-4o-2024-05-13',
     label: 'GPT-4o (2024-05-13)',
     description: 'Advanced, multimodal flagship model that’s cheaper and faster than GPT-4 Turbo.',
@@ -36,7 +63,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Oct 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 5, chatOut: 15 },
-    benchmark: { cbaElo: 1310 },
+    benchmark: { cbaElo: 1287 },
   },
 
   // GPT4 Turbo with Vision -> 2024-04-09
@@ -52,7 +79,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Dec 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 10, chatOut: 30 },
-    benchmark: { cbaElo: 1261 },
+    benchmark: { cbaElo: 1257 },
   },
   {
     idPrefix: 'gpt-4-turbo-2024-04-09',
@@ -63,7 +90,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Dec 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Vision, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 10, chatOut: 30 },
-    benchmark: { cbaElo: 1261 },
+    benchmark: { cbaElo: 1257 },
   },
 
   // GPT4 Turbo Previews
@@ -80,7 +107,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Dec 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 10, chatOut: 30 },
-    benchmark: { cbaElo: 1251 },
+    benchmark: { cbaElo: 1245 },
   },
   {
     idPrefix: 'gpt-4-0125-preview', // GPT-4 Turbo preview model
@@ -92,7 +119,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Dec 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn, LLM_IF_OAI_Json],
     pricing: { chatIn: 10, chatOut: 30 },
-    benchmark: { cbaElo: 1251 },
+    benchmark: { cbaElo: 1245 },
     hidden: true,
   },
   {
@@ -105,7 +132,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Apr 2023',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 10, chatOut: 30 },
-    benchmark: { cbaElo: 1255 },
+    benchmark: { cbaElo: 1251 },
     hidden: true,
   },
 
@@ -182,7 +209,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Sep 2021',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 30, chatOut: 60 },
-    benchmark: { cbaElo: 1164 },
+    benchmark: { cbaElo: 1161 },
   },
   {
     idPrefix: 'gpt-4-0314',
@@ -192,7 +219,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Sep 2021',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 30, chatOut: 60 },
-    benchmark: { cbaElo: 1189 },
+    benchmark: { cbaElo: 1186 },
     hidden: true,
   },
   {
@@ -206,7 +233,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Sep 2021',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 30, chatOut: 60 },
-    benchmark: { cbaElo: 1164 },
+    benchmark: { cbaElo: 1161 },
   },
 
 
@@ -233,7 +260,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Sep 2021',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 0.5, chatOut: 1.5 },
-    benchmark: { cbaElo: 1104 },
+    benchmark: { cbaElo: 1105 },
   },
   {
     idPrefix: 'gpt-3.5-turbo-1106',
@@ -250,7 +277,7 @@ const _knownOpenAIChatModels: ManualMappings = [
   {
     idPrefix: 'gpt-3.5-turbo',
     label: '3.5-Turbo',
-    description: 'Currently points to gpt-3.5-turbo-0125.',
+    description: 'Currently points to gpt-3.5-turbo-0125. As of July 2024, gpt-4o-mini should be used in place of gpt-3.5-turbo, as it is cheaper, more capable, multimodal, and just as fast.',
     symLink: 'gpt-3.5-turbo-0125',
     hidden: true,
     // copied
@@ -259,7 +286,7 @@ const _knownOpenAIChatModels: ManualMappings = [
     trainingDataCutoff: 'Sep 2021',
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
     pricing: { chatIn: 0.5, chatOut: 1.5 },
-    benchmark: { cbaElo: 1104 },
+    benchmark: { cbaElo: 1105 },
   },
 
 
@@ -321,6 +348,49 @@ export function azureModelToModelDescription(azureDeploymentRef: string, openAIM
 }
 
 
+// [Deepseek AI]
+const _knownDeepseekChatModels: ManualMappings = [
+  // [Models and Pricing](https://platform.deepseek.com/api-docs/pricing)
+  // [List Models](https://platform.deepseek.com/api-docs/api/list-models)
+  {
+    idPrefix: 'deepseek-chat',
+    label: 'Deepseek Chat V2',
+    description: 'Good at general tasks, 128K context length',
+    contextWindow: 128000,
+    interfaces: [LLM_IF_OAI_Chat],
+    maxCompletionTokens: 4096,
+    pricing: {
+      chatIn: 0.14,
+      chatOut: 0.28,
+    },
+  },
+  {
+    idPrefix: 'deepseek-coder',
+    label: 'Deepseek Coder V2',
+    description: 'Good at coding and math tasks, 128K context length',
+    contextWindow: 128000,
+    interfaces: [LLM_IF_OAI_Chat],
+    maxCompletionTokens: 4096,
+    pricing: {
+      chatIn: 0.14,
+      chatOut: 0.28,
+    },
+  },
+];
+
+export function deepseekModelToModelDescription(deepseekModelId: string): ModelDescriptionSchema {
+  return fromManualMapping(_knownDeepseekChatModels, deepseekModelId, undefined, undefined, {
+    idPrefix: deepseekModelId,
+    label: deepseekModelId.replaceAll(/[_-]/g, ' '),
+    description: 'New Deepseek Model',
+    contextWindow: 128000,
+    maxCompletionTokens: 4096,
+    interfaces: [LLM_IF_OAI_Chat], // assume..
+    hidden: true,
+  });
+}
+
+
 // [LM Studio]
 export function lmStudioModelToModelDescription(modelId: string): ModelDescriptionSchema {
 
@@ -376,8 +446,31 @@ export function localAIModelToModelDescription(modelId: string): ModelDescriptio
 
 
 // [Mistral]
+// updated from the models on: https://docs.mistral.ai/getting-started/models/
+// and the pricing available on: https://mistral.ai/technology/#pricing
 
 const _knownMistralChatModels: ManualMappings = [
+  // Codestral
+  {
+    idPrefix: 'codestral-2405',
+    label: 'Codestral (2405)',
+    description: 'Designed and optimized for code generation tasks.',
+    contextWindow: 32768,
+    interfaces: [LLM_IF_OAI_Chat],
+    pricing: { chatIn: 1, chatOut: 3 },
+  },
+  {
+    idPrefix: 'codestral-latest',
+    label: 'Mistral Large (latest)',
+    symLink: 'mistral-codestral-2405',
+    hidden: true,
+    // copied
+    description: 'Designed and optimized for code generation tasks.',
+    contextWindow: 32768,
+    interfaces: [LLM_IF_OAI_Chat],
+    pricing: { chatIn: 1, chatOut: 3 },
+  },
+
   // Large
   {
     idPrefix: 'mistral-large-2402',
@@ -385,7 +478,7 @@ const _knownMistralChatModels: ManualMappings = [
     description: 'Top-tier reasoning for high-complexity tasks.',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
-    pricing: { chatIn: 8, chatOut: 24 },
+    pricing: { chatIn: 4, chatOut: 12 },
     benchmark: { cbaElo: 1159 },
   },
   {
@@ -397,103 +490,135 @@ const _knownMistralChatModels: ManualMappings = [
     description: 'Top-tier reasoning for high-complexity tasks.',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
-    pricing: { chatIn: 8, chatOut: 24 },
+    pricing: { chatIn: 4, chatOut: 12 },
     benchmark: { cbaElo: 1159 },
   },
-  {
-    idPrefix: 'mistral-large',
-    label: 'Mistral Large (?)',
-    description: 'Flagship model, with top-tier reasoning capabilities and language support (English, French, German, Italian, Spanish, and Code)',
-    contextWindow: 32768,
-    interfaces: [LLM_IF_OAI_Chat],
-    hidden: true,
-  },
 
-  // Medium - not updated on 2024-02-26
+  // Open Mixtral (8x22B)
+  {
+    idPrefix: 'open-mixtral-8x22b-2404',
+    label: 'Open Mixtral 8x22B (2404)',
+    description: 'Mixtral 8x22B model',
+    contextWindow: 65536,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+    pricing: { chatIn: 2, chatOut: 6 },
+  },
+  {
+    idPrefix: 'open-mixtral-8x22b',
+    label: 'Open Mixtral 8x22B',
+    symLink: 'open-mixtral-8x22b-2404',
+    hidden: true,
+    // copied
+    description: 'Mixtral 8x22B model',
+    contextWindow: 65536,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+    pricing: { chatIn: 2, chatOut: 6 },
+  },
+  // Medium (Deprecated)
   {
     idPrefix: 'mistral-medium-2312',
     label: 'Mistral Medium (2312)',
-    description: 'Mistral internal prototype model.',
+    description: 'Ideal for intermediate tasks that require moderate reasoning (Data extraction, Summarizing a Document, Writing emails, Writing a Job Description, or Writing Product Descriptions)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
     pricing: { chatIn: 2.7, chatOut: 8.1 },
     benchmark: { cbaElo: 1148 },
+    isLegacy: true,
+    hidden: true,
   },
   {
     idPrefix: 'mistral-medium-latest',
     label: 'Mistral Medium (latest)',
     symLink: 'mistral-medium-2312',
-    hidden: true,
     // copied
-    description: 'Mistral internal prototype model.',
+    description: 'Ideal for intermediate tasks that require moderate reasoning (Data extraction, Summarizing a Document, Writing emails, Writing a Job Description, or Writing Product Descriptions)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
     pricing: { chatIn: 2.7, chatOut: 8.1 },
     benchmark: { cbaElo: 1148 },
+    isLegacy: true,
+    hidden: true,
   },
   {
     idPrefix: 'mistral-medium',
     label: 'Mistral Medium',
-    description: 'Mistral internal prototype model.',
+    symLink: 'mistral-medium-2312',
+    // copied
+    description: 'Ideal for intermediate tasks that require moderate reasoning (Data extraction, Summarizing a Document, Writing emails, Writing a Job Description, or Writing Product Descriptions)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
     pricing: { chatIn: 2.7, chatOut: 8.1 },
     benchmark: { cbaElo: 1148 },
+    isLegacy: true,
     hidden: true,
   },
 
-  // Small (8x7B)
+  // Open Mixtral (8x7B) -> currently points to `mistral-small-2312` (as per the docs)
+  {
+    idPrefix: 'open-mixtral-8x7b',
+    label: 'Open Mixtral (8x7B)',
+    description: 'A sparse mixture of experts model. As such, it leverages up to 45B parameters but only uses about 12B during inference, leading to better inference throughput at the cost of more vRAM.',
+    contextWindow: 32768,
+    interfaces: [LLM_IF_OAI_Chat],
+    pricing: { chatIn: 0.7, chatOut: 0.7 },
+  },
+  // Small (deprecated)
   {
     idPrefix: 'mistral-small-2402',
     label: 'Mistral Small (2402)',
-    description: 'Optimized endpoint. Cost-efficient reasoning for low-latency workloads. Mistral Small outperforms Mixtral 8x7B and has lower latency',
+    description: 'Suitable for simple tasks that one can do in bulk (Classification, Customer Support, or Text Generation)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
-    pricing: { chatIn: 2, chatOut: 6 },
-  },
-  {
-    idPrefix: 'mistral-small-2312',
-    label: 'Mistral Small (2312)',
-    description: 'Aka open-mixtral-8x7b. Cost-efficient reasoning for low-latency workloads. Mistral Small outperforms Mixtral 8x7B and has lower latency',
-    contextWindow: 32768,
-    interfaces: [LLM_IF_OAI_Chat],
-    pricing: { chatIn: 2, chatOut: 6 },
+    pricing: { chatIn: 1, chatOut: 3 },
     hidden: true,
+    isLegacy: true,
   },
   {
     idPrefix: 'mistral-small-latest',
     label: 'Mistral Small (latest)',
     symLink: 'mistral-small-2402',
-    hidden: true,
     // copied
-    description: 'Cost-efficient reasoning for low-latency workloads. Mistral Small outperforms Mixtral 8x7B and has lower latency',
+    description: 'Suitable for simple tasks that one can do in bulk (Classification, Customer Support, or Text Generation)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
-    pricing: { chatIn: 2, chatOut: 6 },
+    pricing: { chatIn: 1, chatOut: 3 },
+    hidden: true,
+    isLegacy: true,
+  },
+  {
+    idPrefix: 'mistral-small-2312',
+    label: 'Mistral Small (2312)',
+    description: 'Aka open-mixtral-8x7b. Suitable for simple tasks that one can do in bulk (Classification, Customer Support, or Text Generation)',
+    contextWindow: 32768,
+    interfaces: [LLM_IF_OAI_Chat],
+    pricing: { chatIn: 1, chatOut: 3 },
+    hidden: true,
+    isLegacy: true,
   },
   {
     idPrefix: 'mistral-small',
     label: 'Mistral Small',
-    description: 'Cost-efficient reasoning for low-latency workloads.',
-    contextWindow: 32768,
-    interfaces: [LLM_IF_OAI_Chat],
-    pricing: { chatIn: 2, chatOut: 6 },
-    hidden: true,
-  },
-
-  // Open Mixtral (8x7B)
-  {
-    idPrefix: 'open-mixtral-8x7b',
-    label: 'Open Mixtral (8x7B)',
-    description: 'Mixtral 8x7B model, aka mistral-small-2312',
-    // symLink: 'mistral-small-2312',
+    symLink: 'mistral-small-2312',
     // copied
+    description: 'Aka open-mixtral-8x7b. Suitable for simple tasks that one can do in bulk (Classification, Customer Support, or Text Generation)',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
-    pricing: { chatIn: 0.7, chatOut: 0.7 },
+    pricing: { chatIn: 1, chatOut: 3 },
+    hidden: true,
+    isLegacy: true,
   },
 
-  // Tiny (7B)
+
+  // Open Mistral (7B) -> currently points to mistral-tiny-2312 (as per the docs)
+  {
+    idPrefix: 'open-mistral-7b',
+    label: 'Open Mistral (7B)',
+    description: 'The first dense model released by Mistral AI, perfect for experimentation, customization, and quick iteration. At the time of the release, it matched the capabilities of models up to 30B parameters.',
+    contextWindow: 32768,
+    interfaces: [LLM_IF_OAI_Chat],
+    pricing: { chatIn: 0.25, chatOut: 0.25 },
+  },
+  // Tiny (deprecated)
   {
     idPrefix: 'mistral-tiny-2312',
     label: 'Mistral Tiny (2312)',
@@ -501,43 +626,34 @@ const _knownMistralChatModels: ManualMappings = [
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
     hidden: true,
+    isLegacy: true,
   },
   {
     idPrefix: 'mistral-tiny',
     label: 'Mistral Tiny',
-    description: 'Used for large batch processing tasks where cost is a significant factor but reasoning capabilities are not crucial',
+    symLink: 'mistral-tiny-2312',
+    // copied
+    description: 'Aka open-mistral-7b. Used for large batch processing tasks where cost is a significant factor but reasoning capabilities are not crucial',
     contextWindow: 32768,
     interfaces: [LLM_IF_OAI_Chat],
     hidden: true,
+    isLegacy: true,
   },
-  // Open Mistral (7B)
-  {
-    idPrefix: 'open-mistral-7b',
-    label: 'Open Mistral (7B)',
-    description: 'Mistral 7B model, aka mistral-tiny-2312',
-    // symLink: 'mistral-tiny-2312',
-    // copied
-    contextWindow: 32768,
-    interfaces: [LLM_IF_OAI_Chat],
-    pricing: { chatIn: 0.25, chatOut: 0.25 },
-  },
-
 
   {
     idPrefix: 'mistral-embed',
     label: 'Mistral Embed',
-    description: 'State-of-the-art semantic for extracting representation of text extracts.',
-    // output: 1024 dimensions
+    description: 'A model that converts text into numerical vectors of embeddings in 1024 dimensions. Embedding models enable retrieval and retrieval-augmented generation applications.',
     maxCompletionTokens: 1024, // HACK - it's 1024 dimensions, but those are not 'completion tokens'
-    contextWindow: 32768, // actually unknown, assumed from the other models
+    contextWindow: 8192, // Updated context window
     interfaces: [],
+    pricing: { chatIn: 0.1, chatOut: 0.1 },
     hidden: true,
   },
 ];
 
-
 const mistralModelFamilyOrder = [
-  'mistral-large', 'mistral-medium', 'mistral-small', 'open-mixtral-8x7b', 'mistral-tiny', 'open-mistral-7b', 'mistral-embed', '🔗',
+  'codestral', 'mistral-large', 'open-mixtral-8x22b', 'mistral-medium', 'open-mixtral-8x7b', 'mistral-small', 'open-mistral-7b', 'mistral-tiny', 'mistral-embed', '🔗',
 ];
 
 export function mistralModelToModelDescription(_model: unknown): ModelDescriptionSchema {
@@ -553,13 +669,13 @@ export function mistralModelToModelDescription(_model: unknown): ModelDescriptio
 }
 
 export function mistralModelsSort(a: ModelDescriptionSchema, b: ModelDescriptionSchema): number {
+  if (a.label.startsWith('🔗') && !b.label.startsWith('🔗')) return 1;
+  if (!a.label.startsWith('🔗') && b.label.startsWith('🔗')) return -1;
   const aPrefixIndex = mistralModelFamilyOrder.findIndex(prefix => a.id.startsWith(prefix));
   const bPrefixIndex = mistralModelFamilyOrder.findIndex(prefix => b.id.startsWith(prefix));
   if (aPrefixIndex !== -1 && bPrefixIndex !== -1) {
     if (aPrefixIndex !== bPrefixIndex)
       return aPrefixIndex - bPrefixIndex;
-    if (a.label.startsWith('🔗') && !b.label.startsWith('🔗')) return 1;
-    if (!a.label.startsWith('🔗') && b.label.startsWith('🔗')) return -1;
     return b.label.localeCompare(a.label);
   }
   return aPrefixIndex !== -1 ? 1 : -1;
@@ -813,41 +929,84 @@ export function perplexityAIModelSort(a: ModelDescriptionSchema, b: ModelDescrip
 const _knownGroqModels: ManualMappings = [
   {
     isLatest: true,
+    idPrefix: 'llama-3.1-405b-reasoning',
+    label: 'Llama 3.1 · 405B',
+    description: 'LLaMA 3.1 405B developed by Meta with a context window of 131,072 tokens. Supports tool use.',
+    contextWindow: 131072,
+    maxCompletionTokens: 8000,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
+    isLatest: true,
+    idPrefix: 'llama-3.1-70b-versatile',
+    label: 'Llama 3.1 · 70B',
+    description: 'LLaMA 3.1 70B developed by Meta with a context window of 131,072 tokens. Supports tool use.',
+    contextWindow: 131072,
+    maxCompletionTokens: 8000,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
+    isLatest: true,
+    idPrefix: 'llama-3.1-8b-instant',
+    label: 'Llama 3.1 · 8B',
+    description: 'LLaMA 3.1 8B developed by Meta with a context window of 131,072 tokens. Supports tool use.',
+    contextWindow: 131072,
+    maxCompletionTokens: 8000,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
+    idPrefix: 'llama3-groq-70b-8192-tool-use-preview',
+    label: 'Llama 3 Groq · 70B Tool Use',
+    description: 'LLaMA 3 70B Tool Use developed by Groq with a context window of 8,192 tokens. Optimized for tool use.',
+    contextWindow: 8192,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
+    idPrefix: 'llama3-groq-8b-8192-tool-use-preview',
+    label: 'Llama 3 Groq · 8B Tool Use',
+    description: 'LLaMA 3 8B Tool Use developed by Groq with a context window of 8,192 tokens. Optimized for tool use.',
+    contextWindow: 8192,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
     idPrefix: 'llama3-70b-8192',
     label: 'Llama 3 · 70B',
-    description: 'LLaMA3 70b developed by Meta with a context window of 8,192 tokens.',
+    description: 'LLaMA3 70B developed by Meta with a context window of 8,192 tokens. Supports tool use.',
     contextWindow: 8192,
-    interfaces: [LLM_IF_OAI_Chat],
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+    // isLegacy: true,
+    hidden: true,
   },
   {
-    // isLatest: true,
     idPrefix: 'llama3-8b-8192',
     label: 'Llama 3 · 8B',
-    description: 'LLaMA3 8b developed by Meta with a context window of 8,192 tokens.',
+    description: 'LLaMA3 8B developed by Meta with a context window of 8,192 tokens. Supports tool use.',
     contextWindow: 8192,
-    interfaces: [LLM_IF_OAI_Chat],
-  },
-  {
-    idPrefix: 'llama2-70b-4096',
-    label: 'Llama 2 · 70B',
-    description: 'LLaMA2 70b developed by Meta with a context window of 4,096 tokens.',
-    contextWindow: 4096,
-    interfaces: [LLM_IF_OAI_Chat],
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+    // isLegacy: true,
     hidden: true,
   },
   {
     idPrefix: 'mixtral-8x7b-32768',
     label: 'Mixtral 8x7B',
-    description: 'Mixtral 8x7b developed by Mistral with a context window of 32,768 tokens.',
+    description: 'Mixtral 8x7B developed by Mistral with a context window of 32,768 tokens. Supports tool use.',
     contextWindow: 32768,
-    interfaces: [LLM_IF_OAI_Chat],
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
+  },
+  {
+    idPrefix: 'gemma2-9b-it',
+    label: 'Gemma 2 · 9B Instruct',
+    description: 'Gemma 2 9B developed by Google with a context window of 8,192 tokens. Supports tool use.',
+    contextWindow: 8192,
+    interfaces: [LLM_IF_OAI_Chat, LLM_IF_OAI_Fn],
   },
   {
     idPrefix: 'gemma-7b-it',
     label: 'Gemma 1.1 · 7B Instruct',
-    description: 'Gemma 7b developed by Google with a context window of 8,192 tokens.',
+    description: 'Gemma 7B developed by Google with a context window of 8,192 tokens. Supports tool use.',
     contextWindow: 8192,
     interfaces: [LLM_IF_OAI_Chat],
+    hidden: true,
   },
 ];
 
@@ -864,6 +1023,11 @@ export function groqModelToModelDescription(_model: unknown): ModelDescriptionSc
 }
 
 export function groqModelSortFn(a: ModelDescriptionSchema, b: ModelDescriptionSchema): number {
+  // sort hidden at the end
+  if (a.hidden && !b.hidden)
+    return 1;
+  if (!a.hidden && b.hidden)
+    return -1;
   // sort as per their order in the known models
   const aIndex = _knownGroqModels.findIndex(base => a.id.startsWith(base.idPrefix));
   const bIndex = _knownGroqModels.findIndex(base => b.id.startsWith(base.idPrefix));
